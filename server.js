@@ -10,8 +10,9 @@
 //git init 
 //create .gitignore file and add files which should not be shared in public
 //git add .  //grey files are the one which are in .gitignore and rest in greee
-// git config --global user.email "sr.lakshmi2003@gmail.com"
 //git commit -m "Initial Setup"
+//create repository on github then pase below two commands on terminal
+//git remote add origin git@github.com:lakshmisr21/Mybrary.git
 //git push -u origin main
 //npm run devStart //To run server
 
