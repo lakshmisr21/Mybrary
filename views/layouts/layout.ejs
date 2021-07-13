@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewpoint" content="width-device-width",initial-scale=1.0>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <titl>Mybrary:</titl>
+    <title>Mybrary</title>
 </head>
 <body>
-    <br>
-    Before
-    <br>
-    <%- body %> <!--To put content of everything/all pages inside application-->
-    <br>
-    After
+<br>
+    <%-include('../partials/header.ejs')%>
+    <%-include('../partials/errorMessage.ejs')%>
+    <%-body%> 
+</br>
 </body>
 </html>

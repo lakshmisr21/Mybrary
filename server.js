@@ -5,6 +5,8 @@
 //mongodb installation link https://www.mongodb.com/try/download/community
 //npm i mongoose
 //npm i --save-dev dotenv
+//npm i body-parser // Library to acces input elements from server 
+
 //Git Installation link https://git-scm.com/downloads
 //set up Application with Git 
 //git init 
@@ -14,7 +16,20 @@
 //create repository on github then pase below two commands on terminal
 //git remote add origin git@github.com:lakshmisr21/Mybrary.git
 //git push -u origin main
+
+//DEPLOY APP on HEROKU
+//post heroku CLI installed type below on terminal gitbash
+//heroku login
+//heroku git:remote -a myweb-app-srl //clone the repository
+//git push heroku HEAD:master
+
 //npm run devStart //To run server
+
+//Post changes made to the source code below steps to add,push to git hub and heroku - on terminal git bash
+//git add .
+// git commit -m "Initial Author Routes"
+//git push
+//git push heroku master
 
 if(process.env.NODE_ENV !== 'production'){
     require('dotenv').config()
@@ -23,14 +38,18 @@ if(process.env.NODE_ENV !== 'production'){
 const express=require('express')
 const app=express()
 const expressLayouts=require('express-ejs-layouts')
+const bodyParser=require('express')
+
+
 const indexRouter=require('./routes/index')
-//const dotenv=require('dotenv')
+const authorRouter=require('./routes/authors')
 
 app.set('view engine','ejs')
 app.set('views',__dirname +'/views')
 app.set('layout','layouts/layout')
 app.use(expressLayouts)
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({limit:'10mb',extended:false}))
 
 //setting database & connection
 
@@ -42,5 +61,6 @@ db.on('error',error=> console.error(error))
 db.once('open',()=>console.log('Connected to Mongoose'))
 
 app.use('/',indexRouter)
+app.use('/authors',authorRouter)
 
 app.listen(process.env.PORT||3000) // process.env.PORT tells it is listening to which PORT
